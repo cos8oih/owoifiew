@@ -21,11 +21,9 @@ static bool __fastcall BMFont_initWithString_Cb(
 	CCTextAlignment const alignment,
 	CCPoint const point)
 {
-	auto newStr = owoify(str);
-
 	return ::BMFont_initWithString(
 		pthis,
-		newStr.c_str(),
+		owoify(str).c_str(),
 		fontFile,
 		-1.0f,
 		alignment,
@@ -60,7 +58,7 @@ static bool initHackPro()
 	{
 		if (HackproIsReady())
 		{
-			void* ext = HackproInitialiseExt("Owoifier");
+			void* ext = HackproInitialiseExt("Owoifiew");
 			HackproAddCheckbox(
 				ext,
 				"Owoify!",
@@ -104,6 +102,8 @@ static bool initHooks()
 		debugString("ERROR: MH_CreateHook() failed: " + std::to_string(static_cast<int>(status)));
 		return false;
 	}
+
+	return true;
 }
 
 static DWORD WINAPI MainThread(LPVOID)
